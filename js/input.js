@@ -30,6 +30,8 @@ function Input_obj() {
     }
     
     self.touchMove = function(event) {
+        let d = new Date();
+        console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
         if (event.touches[0].pageX - self.touchX < -16) {
             player.moveLeft();
             self.touchX = event.touches[0].pageX;
@@ -42,20 +44,26 @@ function Input_obj() {
             self.touchY = event.touches[0].pageY;
             Update();
         }
-        if (event.touches[0].pageY - self.touchY > 16) {
+        if (Math.round(event.touches[0].pageY - self.touchY)%16 >= 15) {
             player.moveDown();
-            self.touchX = event.touches[0].pageX;
-            self.touchY = event.touches[0].pageY;
+            // self.touchX = event.touches[0].pageX;
+            // self.touchY = event.touches[0].pageY;
             Update();
         }
     }
-    
+
     self.touchEnd = function (event) {
+        console.log(event.changedTouches[0].pageY - self.touchY)
         let d = new Date()
         // self.tTime = d.getTime();
         if (d.getTime() - self.tTime < 100) {
             player.rotate();
             Update();
+        }
+        if (event.changedTouches[0].pageY - self.touchY >= 64 && d.getTime() - self.tTime < 1000){
+            player.drop();
+            Update();
+            console.log("DRROPPPP")
         }
     }
     
