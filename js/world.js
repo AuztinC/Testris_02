@@ -81,7 +81,9 @@ function World() {
                     draw.rect(x*16, y*16, 16, 16, colors[self.field[y][x]-1], true);
                 }
                 if (self.field[y][x] < 0) {
-                    draw.rect(x*16, y*16, 16, 16, "#999", true);
+                    ctx.globalAlpha = 0.5;
+                    draw.rect(x*16, y*16, 16, 16, "white", true);
+                    ctx.globalAlpha = 1;
                     self.field[y][x] = 0;
                 }
             }

@@ -24,7 +24,9 @@ function GUI_obj() {
         
         draw.rect(self.x, self.y, self.width, self.height, self.color, true);
         
-        draw.rect(self.x+14, self.y+14, 66, 66, "black", true);
+        draw.rect(self.x+14, self.y+14, 66, 66, window.getComputedStyle(canvas, null).getPropertyValue("background-color"));
+        
+        console.log(canvas.style.backgroundColor)
         
         let s = shapes[player.upNext[0]][player.rot];
         
