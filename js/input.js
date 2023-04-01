@@ -10,9 +10,39 @@ function Input_obj() {
     self.down = 0;
     self.left = 0;
     self.right = 0;
+    self.touchX = 0;
+    self.touchY = 0;
+    self.touchVX = 0;
+    self.touchVY = 0;
     
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
     // document.addEventListener("keyup", function(event) {self.keyUp(event)});
+    
+    document.addEventListener("touchstart", function(event){self.touchStart(event)}, {passive: false});
+    document.addEventListener("touchmove", function(event){self.touchMove(event)}, {passive: false});
+    
+    self.touchStart = function(event) {
+        self.touchX = event.touches[0].pageX;
+        self.touchY = event.touches[0].pageY;
+    }
+    
+    self.touchMove = function(event) {
+        if (event.touches[0].pageX - self.touchX < -16) {
+            player.moveLeft();
+            self.touchX = event.touches[0].pageX;
+            self.touchY = event.touches[0].pageY;
+        }
+        if (event.touches[0].pageX - self.touchX > 16) {
+            player.moveRight();
+            self.touchX = event.touches[0].pageX;
+            self.touchY = event.touches[0].pageY;
+        }
+        if (event.touches[0].pageY - self.touchY > 16) {
+            player.moveDown();
+            self.touchX = event.touches[0].pageX;
+            self.touchY = event.touches[0].pageY;
+        }
+    }
     
     self.keyDown = function(event) {
         // console.log(event.key);
