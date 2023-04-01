@@ -42,6 +42,7 @@ function Input_obj() {
             self.touchX = event.touches[0].pageX;
             self.touchY = event.touches[0].pageY;
         }
+        Update();
     }
     
     self.keyDown = function(event) {
