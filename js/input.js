@@ -12,16 +12,19 @@ function Input_obj() {
     self.right = 0;
     self.touchX = 0;
     self.touchY = 0;
-    self.touchVX = 0;
-    self.touchVY = 0;
+    self.tTime = 0;
+    
     
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
     // document.addEventListener("keyup", function(event) {self.keyUp(event)});
     
     document.addEventListener("touchstart", function(event){self.touchStart(event); event.preventDefault()}, {passive: false});
     document.addEventListener("touchmove", function(event){self.touchMove(event); event.preventDefault()}, {passive: false});
+    document.addEventListener("touchend", function(event){self.touchEnd(event); event.preventDefault()}, {passive: false});
     
     self.touchStart = function(event) {
+        let d = new Date()
+        self.tTime = d.getTime();
         self.touchX = event.touches[0].pageX;
         self.touchY = event.touches[0].pageY;
     }
@@ -31,18 +34,29 @@ function Input_obj() {
             player.moveLeft();
             self.touchX = event.touches[0].pageX;
             self.touchY = event.touches[0].pageY;
+            Update();
         }
         if (event.touches[0].pageX - self.touchX > 16) {
             player.moveRight();
             self.touchX = event.touches[0].pageX;
             self.touchY = event.touches[0].pageY;
+            Update();
         }
         if (event.touches[0].pageY - self.touchY > 16) {
             player.moveDown();
             self.touchX = event.touches[0].pageX;
             self.touchY = event.touches[0].pageY;
+            Update();
         }
-        Update();
+    }
+    
+    self.touchEnd = function (event) {
+        let d = new Date()
+        // self.tTime = d.getTime();
+        if (d.getTime() - self.tTime < 100) {
+            player.rotate();
+            Update();
+        }
     }
     
     self.keyDown = function(event) {
