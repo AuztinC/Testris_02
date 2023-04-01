@@ -99,7 +99,7 @@ function Player_obj() {
         
     }
     
-    self.rotate = function() {
+    self.rotateCW = function() {
         self.clear();
         self.rot++;
         if (self.rot > 3) {
@@ -110,6 +110,23 @@ function Player_obj() {
         }
         if (self.rot < 0) {
             self.rot = 3;
+        }
+        self.drawGhost();
+        self.draw();
+    }
+    
+    
+    self.rotateCCW = function() {
+        self.clear();
+        self.rot--;
+        if (self.rot < 0) {
+            self.rot = 3;
+        }
+        if (self.hitCheck()) {
+            self.rot ++;
+        }
+        if (self.rot > 3) {
+            self.rot = 0;
         }
         self.drawGhost();
         self.draw();

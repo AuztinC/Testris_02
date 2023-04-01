@@ -36,23 +36,28 @@ function Input_obj() {
     
     self.touchMove = function(event) {
         let d = new Date();
+        
+        let pageX = event.changedTouches[0].pageX;
+        let pageY = event.changedTouches[0].pageY;
+        
+        
         // console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
         if (event.touches[0].pageX - self.cX <= -16) {
             player.moveLeft();
-            self.cX = event.touches[0].pageX;
-            self.cY = event.touches[0].pageY;
+            self.cX = pageX;
+            self.cY = pageY;
             Update();
         }
         if (event.touches[0].pageX - self.cX >= 16) {
             player.moveRight();
-            self.cX = event.touches[0].pageX;
-            self.cY = event.touches[0].pageY;
+            self.cX = pageX;
+            self.cY = pageY;
             Update();
         }
         if (event.touches[0].pageY - self.cY >= 16) {
             player.moveDown();
-            self.cX = event.touches[0].pageX;
-            self.cY = event.touches[0].pageY;
+            self.cX = pageX;
+            self.cY = pageY;
             Update();
         }
     }
@@ -60,13 +65,24 @@ function Input_obj() {
     self.touchEnd = function (event) {
         // console.log(event.changedTouches[0].pageY - self.touchY)
         let d = new Date()
+        
+        let pageX = event.changedTouches[0].pageX;
+        let pageY = event.changedTouches[0].pageY;
+        
         // self.tTime = d.getTime();
-        if (d.getTime() - self.tTime < 100 && event.changedTouches[0].pageX - self.touchX < 16 && event.changedTouches[0].pageY - self.touchY < 16) {
-            player.rotate();
+        if (d.getTime() - self.tTime < 100 && pageX - self.touchX < 16 && pageY - self.touchY < 16) {
+            
+            if (pageX > parseFloat(window.getComputedStyle(document.querySelector("body"), null).width)/2) {
+                player.rotateCW();
+            } else {
+                player.rotateCCW();
+            }
+            
+            
             Update();
         }
         
-        if (event.changedTouches[0].pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
+        if (pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
             player.drop();
             Update();
             console.log("DRROPPPP")
