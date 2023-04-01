@@ -25,7 +25,7 @@ function Input_obj() {
     document.addEventListener("touchend", function(event){self.touchEnd(event); event.preventDefault()}, {passive: false});
     
     self.touchStart = function(event) {
-        // canvas.requestFullscreen();
+        canvas.requestFullscreen();
         let d = new Date()
         self.tTime = d.getTime();
         self.touchX = event.touches[0].pageX;
