@@ -29,6 +29,8 @@ function Start() {
     world.reset();
     world.draw();
     
+    gui.start();
+    
     player.generateNext();
     
     // setTimeout(update, 1000/fps);

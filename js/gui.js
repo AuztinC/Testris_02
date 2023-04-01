@@ -9,15 +9,22 @@ function GUI_obj() {
     self.y = 0;
     self.width = 96;
     self.height = 352;
-    self.color = "#666";
+    self.color = "#666"
     
+    
+    self.start = function() {
+        self.color = ctx.createLinearGradient(self.x+self.width, self.y, self.x, self.y+self.height);
+        self.color.addColorStop(0, "#05a");
+        self.color.addColorStop(1, "#0df");
+    }
     
     
     
     self.draw = function() {
-        draw.rect(self.x, self.y, self.width, self.height, self.color);
         
-        draw.rect(self.x+16, self.y+16, 64, 64, "black");
+        draw.rect(self.x, self.y, self.width, self.height, self.color, true);
+        
+        draw.rect(self.x+14, self.y+14, 66, 66, "black", true);
         
         let s = shapes[player.upNext[0]][player.rot];
         
