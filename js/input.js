@@ -18,8 +18,8 @@ function Input_obj() {
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
     // document.addEventListener("keyup", function(event) {self.keyUp(event)});
     
-    document.addEventListener("touchstart", function(event){self.touchStart(event)}, {passive: false});
-    document.addEventListener("touchmove", function(event){self.touchMove(event)}, {passive: false});
+    document.addEventListener("touchstart", function(event){self.touchStart(event); event.preventDefault()}, {passive: false});
+    document.addEventListener("touchmove", function(event){self.touchMove(event); event.preventDefault()}, {passive: false});
     
     self.touchStart = function(event) {
         self.touchX = event.touches[0].pageX;
