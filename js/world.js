@@ -78,10 +78,10 @@ function World() {
         for (let y = 0; y < self.height; y++) {
             for (let x = 0; x < self.width; x++) {
                 if (self.field[y][x] > 0) {
-                    draw.rect(x*16, y*16, 16, 16, colors[self.field[y][x]-1]);
+                    draw.rect(x*16, y*16, 16, 16, colors[self.field[y][x]-1], true);
                 }
                 if (self.field[y][x] < 0) {
-                    draw.rect(x*16, y*16, 16, 16, "#999");
+                    draw.rect(x*16, y*16, 16, 16, "#999", true);
                     self.field[y][x] = 0;
                 }
             }

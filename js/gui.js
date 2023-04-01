@@ -24,7 +24,7 @@ function GUI_obj() {
         for (let y = 0; y < s.length; y++) {
             for (let x = 0; x < s[y].length; x++) {
                 if (s[y][x] != 0) {
-                    draw.rect(self.x+16+x*16, self.y+16+y*16, 16, 16, colors[player.upNext[0]]);
+                    draw.rect(self.x+16+x*16, self.y+16+y*16, 16, 16, colors[player.upNext[0]], true);
                 }
             }
         }
