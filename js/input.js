@@ -13,6 +13,8 @@ function Input_obj() {
     self.touchX = 0;
     self.touchY = 0;
     self.tTime = 0;
+    self.cX = 0;
+    self.cY = 0;
     
     
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
@@ -23,45 +25,48 @@ function Input_obj() {
     document.addEventListener("touchend", function(event){self.touchEnd(event); event.preventDefault()}, {passive: false});
     
     self.touchStart = function(event) {
-        canvas.requestFullscreen();
+        // canvas.requestFullscreen();
         let d = new Date()
         self.tTime = d.getTime();
         self.touchX = event.touches[0].pageX;
         self.touchY = event.touches[0].pageY;
+        self.cX = self.touchX;
+        self.cY = self.touchY;
     }
     
     self.touchMove = function(event) {
         let d = new Date();
-        console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
-        if (event.touches[0].pageX - self.touchX < -16) {
+        // console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
+        if (event.touches[0].pageX - self.cX <= -16) {
             player.moveLeft();
-            self.touchX = event.touches[0].pageX;
-            self.touchY = event.touches[0].pageY;
+            self.cX = event.touches[0].pageX;
+            self.cY = event.touches[0].pageY;
             Update();
         }
-        if (event.touches[0].pageX - self.touchX > 16) {
+        if (event.touches[0].pageX - self.cX >= 16) {
             player.moveRight();
-            self.touchX = event.touches[0].pageX;
-            self.touchY = event.touches[0].pageY;
+            self.cX = event.touches[0].pageX;
+            self.cY = event.touches[0].pageY;
             Update();
         }
-        if (Math.round(event.touches[0].pageY - self.touchY)%16 >= 15) {
+        if (event.touches[0].pageY - self.cY >= 16) {
             player.moveDown();
-            // self.touchX = event.touches[0].pageX;
-            // self.touchY = event.touches[0].pageY;
+            self.cX = event.touches[0].pageX;
+            self.cY = event.touches[0].pageY;
             Update();
         }
     }
 
     self.touchEnd = function (event) {
-        console.log(event.changedTouches[0].pageY - self.touchY)
+        // console.log(event.changedTouches[0].pageY - self.touchY)
         let d = new Date()
         // self.tTime = d.getTime();
-        if (d.getTime() - self.tTime < 100) {
+        if (d.getTime() - self.tTime < 100 && event.changedTouches[0].pageX - self.touchX < 16 && event.changedTouches[0].pageY - self.touchY < 16) {
             player.rotate();
             Update();
         }
-        if (event.changedTouches[0].pageY - self.touchY >= 64 && d.getTime() - self.tTime < 1000){
+        
+        if (event.changedTouches[0].pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
             player.drop();
             Update();
             console.log("DRROPPPP")
