@@ -85,7 +85,7 @@ function Input_obj() {
         if (pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
             player.drop();
             Update();
-            console.log("DRROPPPP")
+            console.log("DRROPPPP");
         }
     }
     
@@ -99,7 +99,7 @@ function Input_obj() {
             player.moveRight();
         }
         if (event.key == "ArrowUp") {
-            player.rotate();
+            // player.rotate();
         }
         if (event.key == "ArrowDown") {
             player.moveDown();
@@ -107,6 +107,14 @@ function Input_obj() {
         
         if (event.key == " ") {
             player.drop();
+        }
+        
+        if (event.key == "z") {
+            player.rotateCCW();
+        }
+        
+        if (event.key == "x") {
+            player.rotateCW();
         }
         
         Update();
