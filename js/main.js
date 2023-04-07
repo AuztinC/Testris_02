@@ -18,8 +18,9 @@ let x = 0;
 let y = 0;
 
 let score = 0;
+let highScore = 0;
 
-Start();
+// Start();
 
 
 
@@ -28,7 +29,8 @@ function Start() {
     
     world.reset();
     world.draw();
-    
+    highScore = parseInt(localStorage.getItem("Score")); 
+    world.highScore();
     gui.start();
     
     player.generateNext();

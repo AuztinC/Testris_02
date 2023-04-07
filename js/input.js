@@ -85,7 +85,7 @@ function Input_obj() {
         if (pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
             player.drop();
             Update();
-            console.log("DRROPPPP");
+            // console.log("DRROPPPP");
         }
     }
     
@@ -115,6 +115,11 @@ function Input_obj() {
         
         if (event.key == "x") {
             player.rotateCW();
+        }
+        
+        if (event.key == "r") {
+            localStorage.setItem("Score", 0);
+            highScore = 0;
         }
         
         Update();

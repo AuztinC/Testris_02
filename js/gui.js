@@ -26,7 +26,7 @@ function GUI_obj() {
         
         draw.rect(self.x+14, self.y+14, 66, 66, window.getComputedStyle(canvas, null).getPropertyValue("background-color"));
         
-        console.log(canvas.style.backgroundColor)
+        // console.log(canvas.style.backgroundColor)
         
         let s = shapes[player.upNext[0]][player.rot];
         
@@ -43,10 +43,13 @@ function GUI_obj() {
         ctx.font = "16px Impact";
         ctx.fillStyle = "black";
         ctx.fillText("Lines: " + score, self.x+16, self.y + 112);
-        ctx.fillText("Best: " + document.cookie.split("=")[1], self.x+16, self.y + 144);
+        console.log(highScore);
+        ctx.fillText("Best: " + highScore, self.x+16, self.y + 144);
         ctx.fillStyle = "black";
         
         
     }
+    
+    
     
 }

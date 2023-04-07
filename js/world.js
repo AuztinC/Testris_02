@@ -47,7 +47,7 @@ function World() {
                 }
                 
                 score += 1;
-                console.log(y);
+                // console.log(y);
                 
                 self.field.splice(0, 0, line)
             }
@@ -91,4 +91,19 @@ function World() {
         
     }
     
+    self.highScore = function() {
+        
+        // if (localStorage.getItem("Score")) {
+            if(score > parseInt(localStorage.getItem("Score"))) {
+                highScore = score;
+                localStorage.setItem("Score", score);
+            }
+        // } else {
+        //     localStorage.setItem("Score", score);
+        // }
+        
+        
+        
+    }
 }
+

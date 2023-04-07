@@ -195,6 +195,8 @@ function Player_obj() {
     
     self.reset = function(clear=false) {
         
+        // "Respawn" after collision
+        
         if (clear) {
             self.clear();
         }
@@ -214,14 +216,15 @@ function Player_obj() {
         self.shape = shapes[self.shapeNum];
         self.color = self.shapeNum;
         
+        
+        
+        // if you're hitting something the second you spawned, ya fucked up...
         if (self.hitCheck()) {
             // console.log("GAME OVA BITCH!");
             world.reset();
             world.draw();
+            world.highScore();
             
-            if (score > document.cookie.split("=")[1]) {
-                document.cookie = "score="+score;
-            }
             score = 0;
         }
         
