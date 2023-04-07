@@ -84,7 +84,7 @@ function Input_obj() {
             Update();
         }
         
-        if (pageY - self.touchY >= 64 && d.getTime() - self.tTime < 500){
+        if (pageY - self.touchY >= self.touchSense*2 && d.getTime() - self.tTime < 200){
             player.drop();
             Update();
             // console.log("DRROPPPP");
