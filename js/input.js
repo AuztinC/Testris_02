@@ -72,7 +72,7 @@ function Input_obj() {
         let pageY = event.changedTouches[0].pageY;
         
         // self.tTime = d.getTime();
-        if (d.getTime() - self.tTime < 100 && pageX - self.touchX < touchSense && pageY - self.touchY < touchSense) {
+        if (d.getTime() - self.tTime < 100 && pageX - self.touchX < self.touchSense && pageY - self.touchY < self.touchSense) {
             
             if (pageX > parseFloat(window.getComputedStyle(document.querySelector("body"), null).width)/2) {
                 player.rotateCW();
