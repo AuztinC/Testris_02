@@ -8,6 +8,7 @@
 
 // -------- Testris -------- //
 
+const localStorage = window.localStorage;
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
