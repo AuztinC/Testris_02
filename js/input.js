@@ -44,19 +44,19 @@ function Input_obj() {
         
         
         // console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
-        if (event.touches[0].pageX - self.cX <= -touchSense) {
+        if (event.touches[0].pageX - self.cX <= -self.touchSense) {
             player.moveLeft();
             self.cX = pageX;
             self.cY = pageY;
             Update();
         }
-        if (event.touches[0].pageX - self.cX >= touchSense) {
+        if (event.touches[0].pageX - self.cX >= self.touchSense) {
             player.moveRight();
             self.cX = pageX;
             self.cY = pageY;
             Update();
         }
-        if (event.touches[0].pageY - self.cY >= touchSense) {
+        if (event.touches[0].pageY - self.cY >= self.touchSense) {
             player.moveDown();
             self.cX = pageX;
             self.cY = pageY;
