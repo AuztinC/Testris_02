@@ -16,6 +16,8 @@ function Input_obj() {
     self.cX = 0;
     self.cY = 0;
     
+    self.touchSens = 32;
+    
     
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
     // document.addEventListener("keyup", function(event) {self.keyUp(event)});
@@ -42,19 +44,19 @@ function Input_obj() {
         
         
         // console.log(Math.round(event.touches[0].pageY - self.touchY)%32);
-        if (event.touches[0].pageX - self.cX <= -16) {
+        if (event.touches[0].pageX - self.cX <= -touchSense) {
             player.moveLeft();
             self.cX = pageX;
             self.cY = pageY;
             Update();
         }
-        if (event.touches[0].pageX - self.cX >= 16) {
+        if (event.touches[0].pageX - self.cX >= touchSense) {
             player.moveRight();
             self.cX = pageX;
             self.cY = pageY;
             Update();
         }
-        if (event.touches[0].pageY - self.cY >= 16) {
+        if (event.touches[0].pageY - self.cY >= touchSense) {
             player.moveDown();
             self.cX = pageX;
             self.cY = pageY;
@@ -70,7 +72,7 @@ function Input_obj() {
         let pageY = event.changedTouches[0].pageY;
         
         // self.tTime = d.getTime();
-        if (d.getTime() - self.tTime < 100 && pageX - self.touchX < 16 && pageY - self.touchY < 16) {
+        if (d.getTime() - self.tTime < 100 && pageX - self.touchX < touchSense && pageY - self.touchY < touchSense) {
             
             if (pageX > parseFloat(window.getComputedStyle(document.querySelector("body"), null).width)/2) {
                 player.rotateCW();
