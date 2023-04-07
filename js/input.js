@@ -16,7 +16,7 @@ function Input_obj() {
     self.cX = 0;
     self.cY = 0;
     
-    self.touchSens = 32;
+    self.touchSense = 32;
     
     
     document.addEventListener("keydown", function(event) {self.keyDown(event)});
