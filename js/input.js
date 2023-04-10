@@ -120,7 +120,8 @@ function Input_obj() {
         }
         
         if (event.key == "r") {
-            localStorage.setItem("Score", 0);
+            // localStorage.setItem("Score", 0);
+            localStorage.removeItem("Score");
             highScore = 0;
         }
         

@@ -93,15 +93,16 @@ function World() {
     
     self.highScore = function() {
         
-        // if (localStorage.getItem("Score")) {
+        if (localStorage.getItem("Score")) {
             if(score > parseInt(localStorage.getItem("Score"))) {
                 highScore = score;
-                localStorage.setItem("Score", score);
+                localStorage.setItem("Score", score.toString());
             }
-        // } else {
-        //     localStorage.setItem("Score", score);
-        // }
-        
+        } else {
+            console.log("No 'Score' in localStorage, creating...")
+            highScore = score;
+            localStorage.setItem("Score", score);
+        }
         
         
     }

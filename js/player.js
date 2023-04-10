@@ -197,6 +197,8 @@ function Player_obj() {
         
         // "Respawn" after collision
         
+        // Input.touchEnd();
+        
         if (clear) {
             self.clear();
         }
