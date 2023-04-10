@@ -1,4 +1,9 @@
 
+@font-face {
+    font-family: "LCD";
+    src: url("/7segment.ttf");
+}
+
 body {
     margin: 0;
     padding: 0;

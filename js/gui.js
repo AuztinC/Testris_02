@@ -38,13 +38,33 @@ function GUI_obj() {
             }
         }
         
-        
+        // let LCD = new FontFace("LCD", URL("7segment.ttf"))
         
         ctx.font = "16px Impact";
         ctx.fillStyle = "black";
-        ctx.fillText("Lines: " + score, self.x+16, self.y + 112);
-        // console.log(highScore);
-        ctx.fillText("Best: " + highScore, self.x+16, self.y + 144);
+        ctx.fillText("Score", self.x+16, self.y + 112);
+        
+        ctx.fillRect(self.x+8, self.y + 114, 76, 16)
+        
+        ctx.font = "16px LCD";
+        ctx.fillStyle = "red";
+        ctx.globalAlpha= 0.25;
+        ctx.fillText("88888888" , self.x+16, self.y + 128);
+        ctx.globalAlpha= 1;
+        ctx.fillText(score.toString().padStart(8, ' ') , self.x+16, self.y + 128);
+        
+        ctx.font = "16px Impact";
+        ctx.fillStyle = "black";
+        ctx.fillText("Best", self.x+16, self.y + 160);
+        
+        ctx.fillRect(self.x+8, self.y + 162, 76, 16)
+        
+        ctx.font = "16px LCD";
+        ctx.fillStyle = "red";
+        ctx.globalAlpha= 0.25;
+        ctx.fillText("88888888", self.x+16, self.y + 176);
+        ctx.globalAlpha= 1;
+        ctx.fillText(highScore.toString().padStart(8, ' '), self.x+16, self.y + 176);
         ctx.fillStyle = "black";
         
         
