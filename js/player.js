@@ -4,7 +4,7 @@ let player = new Player_obj();
 
 
 
-setInterval(function() {
+var timer = setInterval(function() {
     player.moveDown();
     Update();
 }, 1000);

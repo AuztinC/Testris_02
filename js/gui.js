@@ -43,7 +43,7 @@ function GUI_obj() {
         ctx.font = "16px Impact";
         ctx.fillStyle = "black";
         ctx.fillText("Lines: " + score, self.x+16, self.y + 112);
-        console.log(highScore);
+        // console.log(highScore);
         ctx.fillText("Best: " + highScore, self.x+16, self.y + 144);
         ctx.fillStyle = "black";
         

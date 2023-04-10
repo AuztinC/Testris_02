@@ -10,6 +10,8 @@
 
 const localStorage = window.localStorage;
 
+const wrap = document.getElementById("main-wrap")
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -21,12 +23,21 @@ let y = 0;
 let score = 0;
 let highScore = 0;
 
+let zoom = 1;
+
 // Start();
 
 
+function Resize() {
+    zoom = Math.min(window.innerWidth / canvas.width, window.innerHeight / canvas.height);
+    canvas.style.transform = "scale(" + zoom + ")";
+    console.log("RESIZE");
+}
 
 
 function Start() {
+    
+    Resize();
     
     world.reset();
     world.draw();
